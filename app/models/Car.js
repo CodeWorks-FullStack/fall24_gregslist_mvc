@@ -3,10 +3,10 @@ import { generateId } from "../utils/GenerateId.js"
 export class Car {
   // NOTE we will pass through a single object when newing up this car class
   /**
-   * @param {{ make: String; model: String; year: Number; price: Number; color: String; imgUrl: String; description: String; transmission: String; mileage: Number; listedAt?: String }} data
+   * @param {{ make: String; model: String; year: Number; price: Number; color: String; imgUrl: String; description?: String; transmission: String; mileage: Number; listedAt?: String }} data
    */
   constructor(data) {
-    this.id = generateId()
+    this.id = generateId() // creates a unique identifier for each class object so they can be easily identified
 
     this.model = data.model
     this.make = data.make
@@ -18,8 +18,8 @@ export class Car {
     this.price = data.price
     this.description = data.description
 
-    // NOTE if no arguments are passed through the Date constructor, it will default to your computers' date and time
-    // NOTE this checks to see if the car already has date saved to it (it came from local storage), or if needs to have a date assigned it (it came from a form submission)
+    // NOTE if no arguments are passed through the Date constructor, it will default to your computer's date and time
+    // NOTE this checks to see if the car already has a date saved to it (it came from local storage), or if needs to have a date assigned it (it came from a form submission)
     this.listedAt = data.listedAt == undefined ? new Date() : new Date(data.listedAt)
 
     // REVIEW equivalent to the ternary operator above
@@ -32,7 +32,7 @@ export class Car {
   }
 
   get cardHTMLTemplate() {
-    return `
+    return /*html*/`
      <div class="col-12 p-0 mb-3">
       <div class="row bg-light shadow car-border" style="border-color: ${this.color};">
         <div class="col-md-4 p-0">
